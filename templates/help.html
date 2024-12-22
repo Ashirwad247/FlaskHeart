@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Heart Disease Prediction</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styling */
+      nav {
+        background-color: #333;
+        padding: 10px 20px;
+      }
+
+      nav .logo {
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 30px;
+      }
+
+      nav .logo a {
+        color: white;
+        text-decoration: none;
+      }
+
+      nav ul {
+        list-style: none;
+        display: inline-block;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 16px;
+        border-radius: 4px;
+      }
+
+      nav ul li a:hover {
+        background-color: #575757;
+      }
+
+      /* Card Styling */
+      .card {
+        width: 80%;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .card p {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Accordion Container */
+      .accordion {
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        padding: 10px;
+        width: 100%;
+      }
+
+      .accordion-item {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 5px;
+      }
+
+      .accordion-header {
+        background-color: #e7e7e7;
+        padding: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: left;
+        transition: background-color 0.3s;
+      }
+
+      .accordion-header:hover {
+        background-color: #d0d0d0;
+      }
+
+      .accordion-body {
+        padding: 15px;
+        background-color: #ffffff;
+        display: none;
+        font-size: 14px;
+        line-height: 1.6;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        overflow: hidden;
+        max-height: 0;
+      }
+
+      /* Smooth reveal effect */
+      .accordion-body.open {
+        display: block;
+        max-height: 1000px; /* Adjust max-height as needed */
+        padding: 15px;
+      }
+
+      /* Smooth scroll effect */
+      .accordion-body.open {
+        animation: slideDown 0.5s ease-in-out forwards;
+      }
+
+      @keyframes slideDown {
+        from {
+          max-height: 0;
+          opacity: 0;
+        }
+        to {
+          max-height: 1000px;
+          opacity: 1;
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const headers = document.querySelectorAll(".accordion-header");
+        headers.forEach((header) => {
+          header.addEventListener("click", () => {
+            const body = header.nextElementSibling;
+            body.classList.toggle("open");
+
+            // Scroll to the expanded section
+            if (body.classList.contains("open")) {
+              body.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            // Close other accordion items
+            headers.forEach((otherHeader) => {
+              if (otherHeader !== header) {
+                const otherBody = otherHeader.nextElementSibling;
+                otherBody.classList.remove("open");
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="logo">
+        <a href="/">Heart Disease Prediction</a>
+      </div>
+      <ul>
+        <li><a href="/check">Check Heart</a></li>
+        <li><a href="/help">Help</a></li>
+      </ul>
+    </nav>
+
+    <!-- Card with About Section -->
+    <div class="card">
+      <h2>About Our Project</h2>
+      <p>
+        Welcome to the Heart Disease Prediction System! This project uses
+        advanced machine learning algorithms to assess the risk of heart
+        disease.
+      </p>
+
+      <!-- Accordion -->
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header">Age</div>
+          <div class="accordion-body">
+            <p>
+              Age is a significant factor in assessing the risk of heart
+              disease. As individuals age, the likelihood of cardiovascular
+              conditions increases due to the natural weakening of the heart and
+              blood vessels.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Gender</div>
+          <div class="accordion-body">
+            <p>
+              Gender is a biological factor affecting heart disease risk.
+              Generally, males have a higher risk of heart disease at a younger
+              age compared to females, but the risk increases for women
+              post-menopause.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Chest Pain Type (cp)</div>
+          <div class="accordion-body">
+            <p>
+              Chest pain type (cp) refers to the type of pain experienced, which
+              can indicate the severity of heart-related conditions. Types range
+              from typical angina to non-specific pain.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Resting Blood Pressure (trestbps)</div>
+          <div class="accordion-body">
+            <p>
+              Resting blood pressure is the pressure in the arteries when the
+              heart is at rest. High blood pressure (hypertension) is a critical
+              risk factor for heart disease and must be managed to reduce
+              cardiovascular risk.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Cholesterol (chol)</div>
+          <div class="accordion-body">
+            <p>
+              Cholesterol levels indicate the amount of fat in the blood. High
+              cholesterol can lead to plaque buildup in arteries, increasing the
+              risk of heart disease and stroke.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Fasting Blood Sugar (fbs)</div>
+          <div class="accordion-body">
+            <p>
+              Fasting blood sugar (fbs) measures blood glucose levels after
+              fasting. High fasting blood sugar levels are associated with
+              diabetes, which is a known risk factor for heart disease.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            Resting Electrocardiographic Results (restecg)
+          </div>
+          <div class="accordion-body">
+            <p>
+              This feature describes the results of a resting electrocardiogram
+              (ECG), which records the electrical activity of the heart.
+              Abnormal ECG results may indicate heart problems.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            Maximum Heart Rate Achieved (thalach)
+          </div>
+          <div class="accordion-body">
+            <p>
+              The maximum heart rate achieved during exercise is used to
+              evaluate cardiovascular fitness and heart health. Lower than
+              expected heart rates may indicate heart problems.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Exercise Induced Angina (exang)</div>
+          <div class="accordion-body">
+            <p>
+              Exercise-induced angina (exang) refers to chest pain caused by
+              physical exertion, indicating reduced blood flow to the heart. It
+              is a critical indicator in heart disease risk assessment.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Oldpeak</div>
+          <div class="accordion-body">
+            <p>
+              Oldpeak measures ST depression during exercise relative to rest.
+              It reflects how well the heart adapts to exercise-induced stress,
+              with higher values indicating potential heart problems.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Slope</div>
+          <div class="accordion-body">
+            <p>
+              Slope refers to the slope of the peak exercise ST segment. It
+              provides information about the heart's response to stress, with an
+              upward slope being normal and other slopes indicating potential
+              issues.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Number of Major Vessels (ca)</div>
+          <div class="accordion-body">
+            <p>
+              The number of major vessels colored by fluoroscopy indicates the
+              extent of coronary artery disease. Fewer vessels suggest more
+              severe blockage, increasing the risk of heart disease.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">Thalassemia (thal)</div>
+          <div class="accordion-body">
+            <p>
+              Thalassemia refers to blood disorders that can cause anemia, which
+              may increase the risk of heart disease if left untreated. Its
+              effects on the heart vary with the severity of the condition.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

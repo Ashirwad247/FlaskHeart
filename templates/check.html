@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Disease Prediction</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styling */
+      nav {
+        background-color: #333;
+        padding: 10px 20px;
+      }
+
+      nav .logo {
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 30px;
+      }
+
+      nav .logo a {
+        color: white;
+        text-decoration: none;
+      }
+
+      nav ul {
+        list-style: none;
+        display: inline-block;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 16px;
+        border-radius: 4px;
+      }
+
+      nav ul li a:hover {
+        background-color: #575757;
+      }
+
+      /* Container Styling */
+      .container {
+        width: 60%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      label {
+        font-size: 16px;
+        color: #555;
+      }
+
+      input[type="number"],
+      input[type="text"],
+      input[type="submit"],
+      input[type="email"],
+      input[type="password"],
+      input[type="radio"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        width: 100%;
+      }
+
+      input[type="submit"] {
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+        font-size: 18px;
+        padding: 12px;
+        margin-top: 20px;
+        border-radius: 4px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #218838;
+      }
+
+      /* Result Card Styling */
+      .result-card {
+        background-color: #d1e7dd; /* Light green similar to Bootstrap secondary */
+        color: #0f5132; /* Darker green text for contrast */
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        margin: 20px auto;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        width: 60%; /* Matches the form width */
+        max-width: 800px;
+        animation: fadeInDown 1s forwards;
+        position: relative;
+      }
+
+      /* Close Button Styling */
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background-color: transparent;
+        border: none;
+        font-size: 18px;
+        color: #0f5132;
+        cursor: pointer;
+      }
+
+      /* Animation */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .form-group input {
+        width: 45%;
+      }
+
+      .form-group label {
+        width: 45%;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          width: 90%;
+        }
+        .result-card {
+          width: 90%; /* Adjusts with the form width on smaller screens */
+        }
+        .form-group {
+          flex-direction: column;
+        }
+        .form-group input {
+          width: 100%;
+        }
+        .form-group label {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="logo">
+        <a href="/">Heart Disease Prediction</a>
+      </div>
+      <ul>
+        <li><a href="/check">Check Heart</a></li>
+        <li><a href="/help">Help</a></li>
+      </ul>
+    </nav>
+
+    <!-- Result Card placed below Navbar and above Form -->
+    <div class="result-card" id="result-card">
+      <button class="close-btn" onclick="closeResultCard()">×</button>
+      <h3>{{ prediction_text }}</h3>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container">
+      <h2>Heart Disease Prediction</h2>
+      <form action="/predict" method="POST">
+        <!-- Form Inputs -->
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" value="45" required />
+
+        <label for="sex">Gender (1 for Male, 0 for Female):</label>
+        <input type="number" id="sex" name="sex" value="1" required />
+
+        <label for="cp">Chest Pain Type (0-3):</label>
+        <input type="number" id="cp" name="cp" value="0" required />
+
+        <label for="trestbps">Resting Blood Pressure:</label>
+        <input
+          type="number"
+          id="trestbps"
+          name="trestbps"
+          value="120"
+          required
+        />
+
+        <label for="chol">Cholesterol:</label>
+        <input type="number" id="chol" name="chol" value="200" required />
+
+        <label for="fbs">Fasting Blood Sugar (0 or 1):</label>
+        <input type="number" id="fbs" name="fbs" value="0" required />
+
+        <label for="restecg">Resting Electrocardiographic Results (0-2):</label>
+        <input type="number" id="restecg" name="restecg" value="1" required />
+
+        <label for="thalach">Maximum Heart Rate Achieved:</label>
+        <input type="number" id="thalach" name="thalach" value="150" required />
+
+        <label for="exang"
+          >Exercise Induced Angina (1 for Yes, 0 for No):</label
+        >
+        <input type="number" id="exang" name="exang" value="0" required />
+
+        <label for="oldpeak"
+          >Oldpeak (Depression Induced by Exercise Relative to Rest):</label
+        >
+        <input
+          type="number"
+          step="any"
+          id="oldpeak"
+          name="oldpeak"
+          value="0.0"
+          required
+        />
+
+        <label for="slope">Slope (0-2):</label>
+        <input type="number" id="slope" name="slope" value="1" required />
+
+        <label for="ca">Number of Major Vessels Colored (0-3):</label>
+        <input type="number" id="ca" name="ca" value="0" required />
+
+        <label for="thal">Thalassemia (1-3):</label>
+        <input type="number" id="thal" name="thal" value="3" required />
+
+        <!-- Prediction Button -->
+        <input type="submit" value="Predict Heart Disease" />
+      </form>
+    </div>
+
+    <script>
+      function closeResultCard() {
+        const resultCard = document.getElementById("result-card");
+        if (resultCard) {
+          resultCard.remove();
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Disease Prediction</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styling */
+      nav {
+        background-color: #333;
+        padding: 10px 20px;
+      }
+
+      nav .logo {
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 30px;
+      }
+
+      nav .logo a {
+        color: white;
+        text-decoration: none;
+      }
+
+      nav ul {
+        list-style: none;
+        display: inline-block;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 16px;
+        border-radius: 4px;
+      }
+
+      nav ul li a:hover {
+        background-color: #575757;
+      }
+
+      /* Container for content */
+      .container {
+        width: 70%;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+      }
+
+      /* Welcome message and description */
+      .main-header {
+        text-align: center;
+        color: #333;
+        cursor: default;
+      }
+
+      .main-header h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        cursor: default;
+      }
+
+      .main-header p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.6;
+        cursor: default;
+      }
+
+      /* Responsive layout for small screens */
+      @media (max-width: 768px) {
+        .container {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="logo">
+        <a href="/">Heart Disease Prediction</a>
+      </div>
+      <ul>
+        <li><a href="/check">Check Heart</a></li>
+        <li><a href="/help">Help</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="main-header">
+        <h1>Welcome to the Heart Disease Prediction App</h1>
+        <p>
+          This application helps you predict the likelihood of heart disease
+          based on various health parameters. By entering your health data, we
+          will analyze the results and give you a prediction on whether you are
+          at risk for heart disease. This tool is built using machine learning
+          and aims to assist individuals in understanding their heart health
+          better.
+        </p>
+      </div>
+
+      <!-- About Section -->
+      <div id="about" style="margin-top: 50px">
+        <h2>About This Application</h2>
+        <p>
+          Heart disease is one of the leading causes of death worldwide. This
+          application uses a machine learning model to predict the risk of heart
+          disease based on common health parameters such as age, cholesterol
+          levels, blood pressure, and more. By analyzing these inputs, the app
+          can help you assess whether you are at risk for heart disease and
+          encourage you to seek professional medical advice if necessary.
+        </p>
+        <p>
+          The model was trained using real-world data and provides an
+          easy-to-use interface to help individuals take control of their
+          health. Remember, this is a predictive tool and not a substitute for
+          professional medical diagnosis.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
